@@ -1,4 +1,4 @@
-# [NOTES:] https://github.com/eman0202byu/startup/blob/main/notes.md#notes
+# [NOTES:](https://github.com/eman0202byu/startup/blob/main/notes.md#notes)
 
 ## How to use GitHub
 
