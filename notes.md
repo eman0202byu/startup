@@ -1,5 +1,11 @@
 # NOTES:
 
+## Where I actually keep my code
+
+[OneDrive](https://1drv.ms/f/s!AhXvxtqnYmeihLANXXor1DKYW-sCaQ?e=YjsiHg)
+
+(Only I can access this)
+
 ## How to use GitHub
 
 ### Push and Pull
