@@ -4,7 +4,9 @@
 
 [OneDrive](https://1drv.ms/f/s!AhXvxtqnYmeihLANXXor1DKYW-sCaQ?e=YjsiHg)
 
-(Only I can access this)
+[G-Drive](https://drive.google.com/drive/folders/1989PDXTTuplr3zdlqmmvWLPQo38Kvj3h?usp=sharing)
+
+(Only I can access these)
 
 ## How to use GitHub
 
