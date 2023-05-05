@@ -1,4 +1,4 @@
-# NOTES:
+# NOTES
 
 ## Where I actually keep my code
 
@@ -27,6 +27,6 @@ After completing an atomic component PUSH
 
 [GitHub](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 
-Either that, or look at other examples
+Either that, or look at this or other documents
 
 ## HTTP
