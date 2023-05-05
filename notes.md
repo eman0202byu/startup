@@ -1,6 +1,6 @@
-#NOTES:
+# NOTES:
 
-#How to use GitHub
+# How to use GitHub
 Use push requests to push your files to GitHub
 Use pull requests to get files from GitHub
 
