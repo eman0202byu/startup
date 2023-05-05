@@ -1,6 +1,6 @@
 # NOTES
 
-## Where I actually keep my code
+## Where I keep my code
 
 [OneDrive](https://1drv.ms/f/s!AhXvxtqnYmeihLANXXor1DKYW-sCaQ?e=YjsiHg)
 
