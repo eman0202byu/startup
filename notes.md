@@ -31,4 +31,4 @@ Either that, or look at this or other documents
 
 ## HTTP
 
-[Structure](https://github.com/eman0202/HTML/index.html)
+[Structure](https://github.com/eman0202byu/HTML/blob/main/index.htm)
