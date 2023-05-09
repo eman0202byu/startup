@@ -42,6 +42,6 @@ I am going to use the required technologies in the following ways.
 - **WebSocket** - As each user's § increases update values on scoreboard (if in top 10), the top 10 user's scores are shown to all users.
 - **React** - Application ported to use the React web framework.
 
-## Important Links
+# Important Links
 
 [Notes](https://github.com/eman0202byu/startup/blob/main/notes.md)
