@@ -32,3 +32,7 @@ Either that, or look at this or other documents
 ## HTTP
 
 [Structure](https://github.com/eman0202byu/HTML/blob/main/index.html)
+
+[Input](https://github.com/eman0202byu/HTML/blob/main/Input.html)
+
+[Media]()
