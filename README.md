@@ -8,11 +8,13 @@ Have you ever felt cramped? Ever felt like you needed more space? Well now you c
 
 ### Design
 
+#### Space Bar
 ![SpaceBar](https://github.com/eman0202byu/startup/blob/main/SpaceBarConcept.PNG)
+
+#### Store
 ![Store](https://github.com/eman0202byu/startup/blob/main/StoreConcept.PNG)
 
-Here is a sequence diagram that shows how the Score Board would interact with the backend to display scores.
-
+#### Space Scanner
 ![Score_Board](https://github.com/eman0202byu/startup/blob/main/ScoreBoardConcept.PNG)
 
 ### Key features
