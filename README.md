@@ -8,7 +8,7 @@ Have you ever felt cramped? Ever felt like you needed more space? Well now you c
 
 ### Design
 
-![Mock](SpaceBarConcept.png)
+![Mock](https://github.com/eman0202byu/startup/blob/main/SpaceBarConcept.PNG)
 
 Here is a sequence diagram that shows how the Score Board would interact with the backend to display scores.
 
