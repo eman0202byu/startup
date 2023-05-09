@@ -30,3 +30,5 @@ After completing an atomic component PUSH
 Either that, or look at this or other documents
 
 ## HTTP
+
+[Structure](https://github.com/eman0202/HTTPS/index.html)
