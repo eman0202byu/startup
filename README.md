@@ -44,4 +44,4 @@ I am going to use the required technologies in the following ways.
 
 # Important Links
 
-[Notes](https://github.com/eman0202byu/startup/blob/main/notes.md)
+## [Notes](https://github.com/eman0202byu/startup/blob/main/notes.md)
