@@ -40,7 +40,7 @@ I am going to use the required technologies in the following ways.
   - retrieving pushes
   - submitting current §
   - retrieving Score Board status
-- **DB** - Store users, number of pushes, current space core.
+- **DB** - Store users, number of pushes per user, user's space core identifier, each space core with an associated identifier.
 - **Login** - Register and login users. Credentials securely stored in database. Can't play unless authenticated.
 - **WebSocket** - As each user's § increases update values on scoreboard (if in top 10), the top 10 user's scores are shown to all users.
 - **React** - Application ported to use the React web framework.
