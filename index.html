@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to Space Salary</h1>
+    <h3>Please enter your Username and Password</h3>
+
+    <hr />
+
+    <form action="SpaceBar.html" method="get">
+
+        <div>
+        <!-- Includes Alphanumeric validation-->
+        <label for="Username">Username: </label>
+        <input type="text" id="username" name="varUsername" placeholder="Username" required pattern="(?=^.{4,}$)(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]+$" />
+        </div>
+
+        <h6>Username Requires: Alphanumeric and at least 4 characters</h6>
+
+        <div>
+        <label for="password">Password: </label>
+        <input type="password" id="password" name="varPassword" placeholder="********" 
+        requiered pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*_]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required/>
+        </div>
+        
+        <h6>Password Requires Minimum of: 8 characters, 1 Uppercase letter, 1 Lowercase letter, 1 number, 1 special character </h6>
+        
+      <button type="submit">Submit</button>
+    </form>
+
+    <footer>
+        <hr />
+        <span class="text-reset">Made by: Ethan Richmond</span>
+        <br />
+        <a href="https://github.com/eman0202byu/startup">GitHub</a>
+      </footer>
+</body>
+</html>
