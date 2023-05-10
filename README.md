@@ -45,6 +45,18 @@ I am going to use the required technologies in the following ways.
 - **WebSocket** - As each user's § increases update values on scoreboard, (if in top 10) the top 10 user's scores are shown to all users.
 - **React** - Application ported to use the React web framework.
 
+### HTML deliverable
+
+For this deliverable I added the application structure.
+
+- **HTML pages** - Four HTML pages that represent the ability to login, push the Space in the Space Bar, buy things in a store, and see the Space Scanner and Core of the Day.
+- **Links** - The login page automatically links to the SpaceBar. The Space Bark links back to the login, to the Store and to the ScoreBoard. The Store and ScoreBoard link to the SpaceBar. (The SpaceBar will act as the hub.)
+- **Text** - The login page has text explaing the Username and Password requierments, and the location to type the Username and Password. Space bar has text displaying the current Space Bucks. Store has text representing costs of goods, missing assets, and the inventory's components. The Space Scanner contains a table of text displaying the place, score and Username of each individual on the 'Score Board'.
+- **Images** - Space Bar has a picture of your SpaceCore, Store has two pictures in the items of the day table. The Space Scanner has a picture of the SpaceCore of the day.
+- **Login** - Input box and submit button for both Username and Password. Regex implemented for validation of secure Username and Passwords. (Username must be Alphanumeric, and Passwords need minimum of: 8 characters, 1 Uppercase letter, 1 Lowercase letter, 1 number, 1 special character)
+- **Database** - The User's space bucks quantity will be pulled from the database. The User's current SpaceCore's identifier will be pulled from the database. The ScoreBoard's top 10 Users, and their space bucks quantity will be pulled from the database. The cost of items in the shops, their associated prices, and whether the user has already bought them will be pulled from the database. The User's inventory will be stored in the database. The User's SpaceCore's Identifier will be pulled from the database.
+- **WebSocket** - The User's SpaceBucks values will be updated on the scoreboard, in real time, and notices of players being put in to space jail will appear on the screen in real time.
+
 # Important Links
 
 ## [Notes](https://github.com/eman0202byu/startup/blob/main/notes.md)
