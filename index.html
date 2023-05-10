@@ -17,8 +17,16 @@
         <div>
         <!-- Includes Alphanumeric validation-->
         <label for="Username">Username: </label>
-        <input type="text" id="username" name="varUsername" placeholder="Username" required pattern="(?=^.{4,}$)(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]+$" />
+        <input type="text" id="username" name="varUsername" placeholder="Username" required pattern="(?=^.{4,}$)((?=.*[a-zA-Z])|(?=.*[0-9]))[A-Za-z0-9]+$" />
         </div>
+
+        <!-- Includes Alphanumeric validation
+        
+        (?=^.{4,}$)((?=.*[a-zA-Z])|(?=.*[0-9]))[A-Za-z0-9]+$ == numbers or letters but must be 4 or more
+        
+        (?=^.{4,}$)(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]+$ == numbers and letters but must be 4 or more
+        
+        -->
 
         <h6>Username Requires: Alphanumeric and at least 4 characters</h6>
 
