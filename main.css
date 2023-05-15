@@ -11,18 +11,6 @@
     src: url(fonts/PressStart2P.ttf);
 }
 
-@media (orientation: portrait) {
-    body {
-      flex-direction: column;
-    }
-   }
-   
-   @media ((orientation: portrait) and (max-height: 600px)) {
-    footer {
-      display: none;
-    }
-   }
-
 
 *{
     background-color: black;
@@ -114,3 +102,15 @@ button {
     font-size: 8px;
     border-radius: 5px;
 }
+
+@media (orientation: portrait) {
+    body {
+      flex-direction: column;
+    }
+   }
+   
+   @media ((orientation: portrait) and (max-height: 600px)) {
+    footer {
+      display: none;
+    }
+   }

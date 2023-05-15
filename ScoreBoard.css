@@ -102,3 +102,15 @@ td {
     border: 1px solid;
     border-color: lightblue;
 }
+
+@media (orientation: portrait) {
+    body {
+      flex-direction: column;
+    }
+   }
+   
+   @media ((orientation: portrait) and (max-height: 600px)) {
+    footer {
+      display: none;
+    }
+   }
