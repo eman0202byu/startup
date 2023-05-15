@@ -1,0 +1,76 @@
+@font-face {
+    font-family: '20XX';
+    src: url(fonts/20XX.ttf);
+}
+@font-face {
+    font-family: 'proto20XX';
+    src: url(fonts/Prototype_20XX.ttf);
+}
+@font-face {
+    font-family: 'PSP2';
+    src: url(fonts/PressStart2P.ttf);
+}
+@font-face {
+    font-family: 'BabelStoneHan';
+    src: url(fonts/BabelStoneHan.ttf);
+}
+
+body{
+    background-color: black;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    min-width: 375px;
+}
+
+
+header{
+    background-color: rgb(51, 51, 51);
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 10px;
+    border: lightgrey .1rem solid;
+}
+
+h1{
+    background-color: rgb(51, 51, 51);
+    font-family: '20XX', 'Times New Roman', Times, serif;
+    font-size: 32px;
+}
+li {
+    background-color: rgb(51, 51, 51);
+    color: lightgrey;
+    font-family: 'proto20XX', 'Times New Roman', Times, serif;
+    font-size: 16px;
+}
+
+footer{
+    flex-direction: row;
+    background-color: rgb(51, 51, 51);
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 10px;
+    border: lightgrey .1rem solid;
+}
+
+span{
+    font-family: 'proto20XX', 'Times New Roman', Times, serif;
+    background-color: rgb(51, 51, 51);
+    font-size: 16px;
+}
+
+a {
+    font-family: 'PSP2', 'Times New Roman', Times, serif;
+    background-color: rgb(51, 51, 51);
+    font-size: 16px;
+    color: lightgrey;
+}
+
+div img{
+    padding: 30px;
+    width: 50%;
+    height: 50%;
+}
