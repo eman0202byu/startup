@@ -39,4 +39,12 @@ Either that, or look at this or other documents
 
 ## CSS
 
+[Base](https://github.com/eman0202byu/CSS/blob/main/index.html)
+
+[Style](https://github.com/eman0202byu/CSS/blob/main/styles.css)
+
+[Animation](https://github.com/eman0202byu/CSS/blob/main/animation.css)
+
+## JS
+
 
