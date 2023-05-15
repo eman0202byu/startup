@@ -57,6 +57,17 @@ For this deliverable I added the application structure.
 - **Database** - The User's space bucks quantity will be pulled from the database. The User's current SpaceCore's identifier will be pulled from the database. The ScoreBoard's top 10 Users, and their space bucks quantity will be pulled from the database. The cost of items in the shops, their associated prices, and whether the user has already bought them will be pulled from the database. The User's inventory will be stored in the database. The User's SpaceCore's Identifier will be pulled from the database.
 - **WebSocket** - The User's SpaceBucks values will be updated on the scoreboard, in real time, and notices of players being put in to space jail will appear on the screen in real time.
 
+## CSS deliverable
+
+For this deliverable I properly styled the application into its final appearance.
+
+- **Header, footer, and main content body** - Implemented, The header is at the top of the page, the footer is at the bottom, and the main content is between them.
+- **Navigation elements** - I removed the underlines, changed the font (to a custom font) for anchor elements, and put them with their respective elements.
+- **Responsive to window resizing** - My app responds to the alteration of the windows size, the text wraps arround to shrink with the different screen sizes, and the footer is removed if the screen's height is less than 600px. Also, the content will be centered on all screens, so the content will be visibal to all users.
+- **Application elements** - Used thematic coloring to reflect the Si-Fi nature of my project. The items in the tables are evenly spaced, and  contrast have clear borders differentiating different elements. There are high contrast colors so that it is easy to read.
+- **Application text content** - Fonts are consistent with their uses, the Retro font (ready player 2) is for all links, the blocky font (20XX) is for major headers over sections, the more simple font (protype20XX) is for the items below major headers, and the more flowing font (BableStoneHan) is used for descriptive text. All fonts have a backup font of Times New Roman, and Times if fonts fail to be pulled from server, or are in non english characters.
+- **Application images** - The images scale with the size of the screen. The image in the SpaceBar spins (Weee). The images in the tables are centered and have a will always have a white background to ensure clear viewing.
+
 # Important Links
 
 ## [Notes](https://github.com/eman0202byu/startup/blob/main/notes.md)
