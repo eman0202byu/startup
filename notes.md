@@ -47,4 +47,5 @@ Either that, or look at this or other documents
 
 ## JS
 
+[Basics](https://github.com/eman0202byu/JS/blob/main/types-conversion-equality-variables-conditionals-functions-arrowFunctions-closures-strings-regex-arrays-arrayOperations-exceptions-templateLiterals-specialOperators-objects-spread-objectArrayOperations-operationalChain.js)
 
