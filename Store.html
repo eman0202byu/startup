@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Store</title>
     <link rel="icon" href="SpaceCore.ico">
+    <script src="Store.js" defer></script>
     <link rel="stylesheet" href="Store.css">
 </head>
 <body>
@@ -17,34 +18,34 @@
     <h2>Today's Items</h2>
     <table>
         <tr>
-          <td><div id="picture" class="picture-box"><img width="50px" src="partyhat.jpg" alt="random" /></div><div>§----</div><button type="">Buy</button></td>
-          <td><div id="picture" class="picture-box"><img width="50px" src="plainnecklace.png" alt="random" /></div><div>§----</div><button type="">Buy</button></td>
-          <td><div>TBD</div><div>§----</div><button type="">Buy</button></td>
+          <td><div id="item1" id="picture" class="picture-box"><img width="50px" src="partyhat.jpg" alt="random" /></div><div>§----</div><button type="" onclick="Bpress(1)">Buy</button></td>
+          <td><div id="item2" id="picture" class="picture-box"><img width="50px" src="plainnecklace.png" alt="random" /></div><div>§----</div><button type="" onclick="Bpress(2)">Buy</button></td>
+          <td><div id="item3">TBD</div><div>§----</div><button type="" onclick="Bpress(3)">Buy</button></td>
         </tr>
         <tr>
-          <td><div>TBD</div><div>§----</div><button type="">Buy</button></td>
-          <td><div>TBD</div><div>§----</div><button type="">Buy</button></td>
-          <td><div>TBD</div><div>§----</div><button type="">Buy</button></td>
+          <td><div id="item4">TBD</div><div>§----</div><button type="" onclick="Bpress(4)">Buy</button></td>
+          <td><div id="item5">TBD</div><div>§----</div><button type="" onclick="Bpress(5)">Buy</button></td>
+          <td><div id="item6">TBD</div><div>§----</div><button type="" onclick="Bpress(6)">Buy</button></td>
         </tr>
         <tr>
-            <td><div>TBD</div><div>§----</div><button type="">Buy</button></td>
-            <td><div>TBD</div><div>§----</div><button type="">Buy</button></td>
-            <td><div>TBD</div><div>§----</div><button type="">Buy</button></td>
-          </tr>
+          <td><div id="item7">TBD</div><div>§----</div><button type="" onclick="Bpress(7)">Buy</button></td>
+          <td><div id="item8">TBD</div><div>§----</div><button type="" onclick="Bpress(8)">Buy</button></td>
+          <td><div id="item9">TBD</div><div>§----</div><button type="" onclick="Bpress(9)">Buy</button></td>
+        </tr>
       </table>
 
       <h2>Inventory</h2>
       <table>
         <tr>
           <td><div>Hat</div><div> <label for="select"></label>
-            <select id="select" name="varSelectHat">
+            <select id="hat" id="select" name="varSelectHat">
               <option selected>PartyHat</option>
               <option>NULL</option>
               <option>NULL</option>
               <option>Nothing</option>
             </select></div></td>
           <td><div>Necklace</div><div> <label for="select"></label>
-            <select id="select" name="varSelectNecklace">
+            <select id="necklace" id="select" name="varSelectNecklace">
               <option selected>PlainNecklace</option>
               <option>NULL</option>
               <option>NULL</option>
@@ -53,14 +54,14 @@
         </tr>
         <tr>
           <td><div>Left Hand</div><div> <label for="select"></label>
-            <select id="select" name="varSelectLHand">
+            <select id="lHand" id="select" name="varSelectLHand">
               <option>NULL</option>
               <option>NULL</option>
               <option>NULL</option>
               <option selected>Nothing</option>
             </select></div></td>
           <td><div>Right Hand</div><div> <label for="select"></label>
-            <select id="select" name="varSelectRHand">
+            <select id="rHand" id="select" name="varSelectRHand">
               <option>NULL</option>
               <option>NULL</option>
               <option>NULL</option>
