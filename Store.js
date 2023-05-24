@@ -118,12 +118,22 @@ function Bpress(buttonNumber){
 }
 
 
-// To implement later
-window.addEventListener('beforeunload',(event) =>{
-    inventoryupdate();
-});
 
- function inventoryupdate(){
-    // Implement an update to spaceCore based upon selected items in select (drop downs).
+function inventoryUp(){
+    debugger;
+
+    hatID = document.querySelector('#hat');
+    necklaceID = document.querySelector('#necklace');
+    lHandID = document.querySelector('#lHand');
+    rHandID = document.querySelector('#rHand');
+
+    spaceCore.hat = hatID.value;
+    spaceCore.necklace = necklaceID.value;
+    spaceCore.lHand = lHandID.value;
+    spaceCore.rHand = rHandID.value;
+
+    localStorage.setItem('Core', JSON.stringify(spaceCore)); // Update with database push
+
+    alert('Inventory Saved');
+
 }
-
