@@ -1,3 +1,14 @@
+const user = localStorage.getItem('userName') ?? 404;
+const pass = localStorage.getItem('userPass') ?? 404;
+
+if((user == 404) || (pass == 404)){
+    window.location.href = "index.html";
+}
+
+let currency = localStorage.getItem('§') ?? 0; //Update with database fetch
+
+
+
 let spaceCore = null;
 
 const fetchCore = new Promise((resolve,reject) => {
@@ -36,6 +47,10 @@ fetchCore
     .finally(() => console.log('Log: fetchCore finished'));
 
 
+
+
+
+
 let Store = null;
 
 const fetchStore = new Promise((resolve,reject) => {
@@ -47,22 +62,22 @@ const fetchStore = new Promise((resolve,reject) => {
     if(fetchSuccess === true){
         if(outsideStore == 'NONE'){
         Store = {
-           item1: ['imgID', 'value'],
-           item2: ['imgID', 'value'],
-           item3: ['imgID', 'value'],
-           item4: ['imgID', 'value'],
-           item5: ['imgID', 'value'],
-           item6: ['imgID', 'value'],
-           item7: ['imgID', 'value'],
-           item8: ['imgID', 'value'],
-           item9: ['imgID', 'value'],
+           item1: ['imgID1', '100'],
+           item2: ['imgID2', '100'],
+           item3: ['imgID3', '100'],
+           item4: ['imgID4', '100'],
+           item5: ['imgID5', '100'],
+           item6: ['imgID6', '100'],
+           item7: ['imgID7', '100'],
+           item8: ['imgID8', '100'],
+           item9: ['imgID9', '100'],
         }
         // Each image will be assigned a letter and number
         // h === hat; n === necklace; l === lHand; r === rHand;
         // The numbers will be in the order the image is added to the database
         // 0 === NONE;
         // EX: partyhat.jpg === h1;
-        // This will be packaged in to a .json and send to the DB and then the DB will push back the corrosponding .png updating the user's SpaceCore.png reference.
+        // This will be packaged in to a .json and send to the DB and then the DB will the user's SpaceCore.png reference.
         localStorage.setItem('Store', JSON.stringify(Store)); //Update with database push
         } else {
             Store = JSON.parse(outsideStore);
@@ -78,6 +93,10 @@ fetchStore
     .catch((ERRORCODE) => console.error(`Error: ${ERRORCODE}`))
     .finally(() => console.log('Log: fetchStore finished'));
 
+
+
+
+
 function Bpress(buttonNumber){
     const buttonID = '#item' + buttonNumber;
     const buttonDOM = document.querySelector(buttonID);
@@ -86,8 +105,25 @@ function Bpress(buttonNumber){
     let itemImage, itemValue = null;
     [itemImage, itemValue] = item;
 
-    buttonDOM.innerHTML = `<td id="item${buttonNumber}"><div>${itemImage}</div><div>§${itemValue}</div><button type="" onclick="Bpress(${buttonNumber})">Buy</button></td>`;
+    if(itemValue > currency){
+        alert("You can't afford this item");
+        buttonDOM.innerHTML = `<td id="item${buttonNumber}"><div>${itemImage}</div><div>§${itemValue}</div><button type="" onclick="Bpress(${buttonNumber})">Buy</button></td>`;
+    } else{
+        currency = (currency - itemValue);
+        buttonDOM.innerHTML = `<td id="item${buttonNumber}"><div>Sold</div><div>§${itemValue}</div></td>`
+    }
+    localStorage.setItem("§", currency); //Update with database push
+    let cur = localStorage.getItem('items') ?? ''; //Update with database fetch
+    localStorage.setItem('items', itemImage + ' ' + cur); //Update with database push
 }
 
 
+// To implement later
+window.addEventListener('beforeunload',(event) =>{
+    inventoryupdate();
+});
+
+ function inventoryupdate(){
+    // Implement an update to spaceCore based upon selected items in select (drop downs).
+}
 
