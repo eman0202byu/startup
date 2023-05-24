@@ -79,7 +79,14 @@ fetchStore
     .finally(() => console.log('Log: fetchStore finished'));
 
 function Bpress(buttonNumber){
+    const buttonID = '#item' + buttonNumber;
+    const buttonDOM = document.querySelector(buttonID);
+    const key = 'item' + buttonNumber;
+    let item = Store[key];
+    let itemImage, itemValue = null;
+    [itemImage, itemValue] = item;
 
+    buttonDOM.innerHTML = `<td id="item${buttonNumber}"><div>${itemImage}</div><div>§${itemValue}</div><button type="" onclick="Bpress(${buttonNumber})">Buy</button></td>`;
 }
 
 
