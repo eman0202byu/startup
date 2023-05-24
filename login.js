@@ -1,9 +1,6 @@
-function username() {
-    const nameEl = document.querySelector("#name");
+function login() {
+    const nameEl = document.querySelector("#username");
+    const passEl = document.querySelector("#password");
     localStorage.setItem("userName", nameEl.value);
-}
-
-function password() {
-    const nameEl = document.querySelector("#pass");
-    localStorage.setItem("userPass", nameEl.value);
+    localStorage.setItem("userPass", passEl.value);
 }
