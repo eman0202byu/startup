@@ -72,11 +72,12 @@ function updateSB(playerNum){
     let userX = SB[key];
     let userScore, userName = null;
     [userScore, userName] = userX;
+    const formattedNumber = userScore.toLocaleString("en-US");
 
     if(playerNum != 0){
-        userDOM.innerHTML = `<td id="user${playerNum}"><div>${playerNum}.</div><div>§${userScore}</div><div>${userName}</div></td>`
+        userDOM.innerHTML = `<td id="user${playerNum}"><div>${playerNum}.</div><div>§${formattedNumber}</div><div>${userName}</div></td>`
     }else{
-        userDOM.innerHTML = `<td id="user${playerNum}"><div>1${playerNum}.</div><div>§${userScore}</div><div>${userName}</div></td>`
+        userDOM.innerHTML = `<td id="user${playerNum}"><div>1${playerNum}.</div><div>§${formattedNumber}</div><div>${userName}</div></td>`
     }
 }
 
