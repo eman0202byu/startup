@@ -91,7 +91,8 @@ updateSB(0);
 runUpdateSB();
 
 function reUpSB(){
-    runUpdateSB;
+    runUpdateSB();
+    console.log('Log: ScoreBoard Updated');
 }
 
 let reUp = reUpSB;
