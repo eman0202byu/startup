@@ -121,10 +121,10 @@ function Bpress(buttonNumber){
     } else{
         currency = (currency - itemValue);
         buttonDOM.innerHTML = `<td id="item${buttonNumber}"><div>Sold</div><div>§${itemValue}</div></td>`
+        let cur = localStorage.getItem('items') ?? ''; //Update with database fetch
+        localStorage.setItem('items', itemImage + ' ' + cur); //Update with database push
     }
     localStorage.setItem("§", currency); //Update with database push
-    let cur = localStorage.getItem('items') ?? ''; //Update with database fetch
-    localStorage.setItem('items', itemImage + ' ' + cur); //Update with database push
 }
 
 
