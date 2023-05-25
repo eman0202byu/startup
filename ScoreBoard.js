@@ -81,8 +81,19 @@ function updateSB(playerNum){
     }
 }
 
+function runUpdateSB(){
 for (let i = 1; i < 10; i++) {
     updateSB(i)
 }
 updateSB(0);
 }
+}
+runUpdateSB();
+
+function reUpSB(){
+    runUpdateSB;
+}
+
+let reUp = reUpSB;
+
+let intervalID = setInterval(reUp, 120000);
