@@ -62,7 +62,7 @@ function cheating(){
 }
 
 function cheatCheck(){
-    if(currency > (currencychk + 10)){
+    if(currency > (currencychk + 100)){
         document.body.innerHTML =
         `<body id="caught"><header><h1>You Clicked too fast</h1><li><span class="text-reset">Your account has been suspended by the spacecops contact the admin to review your case.</span><br /><a href="https://github.com/eman0202byu/startup">GitHub</a></li></header></body>`;
         localStorage.setItem("Suspention", 1); //Update with Database push

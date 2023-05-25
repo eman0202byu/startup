@@ -5,6 +5,19 @@ if((user == 404) || (pass == 404)){
     window.location.href = "index.html";
 }
 
+const accountStatus = localStorage.getItem('Suspention') ?? 0; //Update with database fetch
+
+if(accountStatus == 1){
+    cheating();
+}
+
+function cheating(){
+    document.body.innerHTML =
+    `<body id="caught"><header><h1>You Clicked too fast</h1><li><span class="text-reset">Your account has been suspended by the spacecops contact the admin to review your case.</span><br /><a href="https://github.com/eman0202byu/startup">GitHub</a></li></header></body>`;
+}
+
+if(accountStatus != 1){
+
 let SB = null;
 
 const fetchSB = new Promise((resolve,reject) => {
@@ -71,3 +84,4 @@ for (let i = 1; i < 10; i++) {
     updateSB(i)
 }
 updateSB(0);
+}
