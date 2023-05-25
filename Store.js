@@ -120,12 +120,11 @@ function Bpress(buttonNumber){
 
 
 function inventoryUp(){
-    debugger;
 
-    hatID = document.querySelector('#hat');
-    necklaceID = document.querySelector('#necklace');
-    lHandID = document.querySelector('#lHand');
-    rHandID = document.querySelector('#rHand');
+    const hatID = document.querySelector('#hat');
+    const necklaceID = document.querySelector('#necklace');
+    const lHandID = document.querySelector('#lHand');
+    const rHandID = document.querySelector('#rHand');
 
     spaceCore.hat = hatID.value;
     spaceCore.necklace = necklaceID.value;
