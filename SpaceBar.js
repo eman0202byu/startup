@@ -14,8 +14,6 @@ if(accountStatus == 1){
 let currency = localStorage.getItem('§') ?? 0; //Update with database fetch
 let currencychk = currency;
 currency--;
-Bpress();
-
 function Bpress(){
     if(accountStatus != 1){
     currency++;
@@ -49,6 +47,14 @@ function Bpress(){
     localStorage.setItem("§", currency); //Update with Database push
     }
 }
+Bpress();
+
+function pullImage(){
+    const imgDOM = document.querySelector("#picture");
+    imgDOM.innerHTML =
+    '<div id="picture" class="picture-box"><img width="100px" src="SpaceCore.png" alt="random" /></div>';
+}
+pullImage();
 
 function cheating(){
     document.body.innerHTML =
