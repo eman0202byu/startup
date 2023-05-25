@@ -94,9 +94,6 @@ fetchStore
     .finally(() => console.log('Log: fetchStore finished'));
 
 
-
-
-
 function Bpress(buttonNumber){
     const buttonID = '#item' + buttonNumber;
     const buttonDOM = document.querySelector(buttonID);
