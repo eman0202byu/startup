@@ -125,7 +125,7 @@ function Bpress(buttonNumber){
 
     if(itemValue > currency){
         alert("You can't afford this item");
-        buttonDOM.innerHTML = `<td id="item${buttonNumber}"><div>${itemImage}</div><div>§${itemValue}</div><button type="" onclick="Bpress(${buttonNumber})">Buy</button></td>`;
+        buttonDOM.innerHTML = `<td id="item${buttonNumber}"><div><div id="picture" class="picture-box"><img width="50px" src="${itemImage}" alt="random" /></div></div><div>§${itemValue}</div><button type="" onclick="Bpress(${buttonNumber})">Buy</button></td>`;
     } else{
         currency = (currency - itemValue);
         buttonDOM.innerHTML = `<td id="item${buttonNumber}"><div>Sold</div><div>§${itemValue}</div></td>`
