@@ -109,8 +109,9 @@ function storeUP(){
         let item = Store[key];
         let itemImage, itemValue = null;
         [itemImage, itemValue] = item;
+        const formattedNumber = itemValue.toLocaleString("en-US");
 
-        buttonDOM.innerHTML = `<td id="item${buttonNumber}"><div><div id="picture" class="picture-box"><img width="50px" src="${itemImage}" alt="random" /></div></div><div>§${itemValue}</div><button type="" onclick="Bpress(${buttonNumber})">Buy</button></td>`;
+        buttonDOM.innerHTML = `<td id="item${buttonNumber}"><div><div id="picture" class="picture-box"><img width="50px" src="${itemImage}" alt="random" /></div></div><div>§${formattedNumber}</div><button type="" onclick="Bpress(${buttonNumber})">Buy</button></td>`;
     }
 }
 storeUP();
@@ -122,13 +123,14 @@ function Bpress(buttonNumber){
     let item = Store[key];
     let itemImage, itemValue = null;
     [itemImage, itemValue] = item;
+    const formattedNumber = itemValue.toLocaleString("en-US");
 
     if(itemValue > currency){
         alert("You can't afford this item");
-        buttonDOM.innerHTML = `<td id="item${buttonNumber}"><div><div id="picture" class="picture-box"><img width="50px" src="${itemImage}" alt="random" /></div></div><div>§${itemValue}</div><button type="" onclick="Bpress(${buttonNumber})">Buy</button></td>`;
+        buttonDOM.innerHTML = `<td id="item${buttonNumber}"><div><div id="picture" class="picture-box"><img width="50px" src="${itemImage}" alt="random" /></div></div><div>§${formattedNumber}</div><button type="" onclick="Bpress(${buttonNumber})">Buy</button></td>`;
     } else{
         currency = (currency - itemValue);
-        buttonDOM.innerHTML = `<td id="item${buttonNumber}"><div>Sold</div><div>§${itemValue}</div></td>`
+        buttonDOM.innerHTML = `<td id="item${buttonNumber}"><div>Sold</div><div>§${formattedNumber}</div></td>`
         let cur = localStorage.getItem('items') ?? ''; //Update with database fetch
         localStorage.setItem('items', itemImage + ' ' + cur); //Update with database push
     }
