@@ -1,8 +1,8 @@
 const btnDescriptions = [
-  { file: 'sound1.mp3', hue: 120 },
-  { file: 'sound2.mp3', hue: 0 },
-  { file: 'sound3.mp3', hue: 60 },
-  { file: 'sound4.mp3', hue: 240 },
+  {file: 'sound1.mp3', hue: 120},
+  {file: 'sound2.mp3', hue: 0},
+  {file: 'sound3.mp3', hue: 60},
+  {file: 'sound4.mp3', hue: 240},
 ];
 
 class Button {
@@ -18,19 +18,17 @@ class Button {
     this.el.style.backgroundColor = background;
   }
 
-  async press(volume = 1.0) {
-    return new Promise(async (pressResolve) => {
-      this.paint(50);
-      await this.playSound(volume);
-      this.paint(25);
-      pressResolve();
-    });
+  async press(volume) {
+    this.paint(50);
+    await this.play(volume);
+    this.paint(25);
   }
 
-  async playSound(volume) {
-    return new Promise((playResolve) => {
-      this.sound.volume = volume;
-      this.sound.onended = playResolve;
+  // Work around Safari's rule to only play sounds if given permission.
+  async play(volume = 1.0) {
+    this.sound.volume = volume;
+    await new Promise((resolve) => {
+      this.sound.onended = resolve;
       this.sound.play();
     });
   }
@@ -128,25 +126,37 @@ class Game {
     return buttons[Math.floor(Math.random() * this.buttons.size)];
   }
 
-  saveScore(score) {
+  async saveScore(score) {
     const userName = this.getPlayerName();
+    const date = new Date().toLocaleDateString();
+    const newScore = {name: userName, score: score, date: date};
+
+    try {
+      const response = await fetch('/api/score', {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify(newScore),
+      });
+
+      // Store what the service gave us as the high scores
+      const scores = await response.json();
+      localStorage.setItem('scores', JSON.stringify(scores));
+    } catch {
+      // If there was an error then just track scores locally
+      this.updateScoresLocal(newScore);
+    }
+  }
+
+  updateScoresLocal(newScore) {
     let scores = [];
     const scoresText = localStorage.getItem('scores');
     if (scoresText) {
       scores = JSON.parse(scoresText);
     }
-    scores = this.updateScores(userName, score, scores);
-
-    localStorage.setItem('scores', JSON.stringify(scores));
-  }
-
-  updateScores(userName, score, scores) {
-    const date = new Date().toLocaleDateString();
-    const newScore = { name: userName, score: score, date: date };
 
     let found = false;
     for (const [i, prevScore] of scores.entries()) {
-      if (score > prevScore.score) {
+      if (newScore > prevScore.score) {
         scores.splice(i, 0, newScore);
         found = true;
         break;
@@ -161,7 +171,7 @@ class Game {
       scores.length = 10;
     }
 
-    return scores;
+    localStorage.setItem('scores', JSON.stringify(scores));
   }
 }
 
