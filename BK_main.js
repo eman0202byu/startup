@@ -7,7 +7,7 @@ app.use(express.static('public'));
 
 app.use(express.json());
 
-var apiRouter = express.Router();
+const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
 
@@ -17,8 +17,8 @@ apiRouter.get('/bucks', (_req, res) => {
     res.send(bucks);
   });
 
-  apiRouter.get('/sus', (_req, res) => {
-    res.send(suspention);
+  apiRouter.get('/suspension', (_req, res) => {
+    res.send(suspension);
   });
 
 

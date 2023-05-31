@@ -5,7 +5,32 @@ if((user == 404) || (pass == 404)){
     window.location.href = "index.html";
 }
 
-const accountStatus = localStorage.getItem('Suspention') ?? 0; //Update with database fetch
+let accountStatus = 0;
+
+async function loadSus() {
+    let sus = 0;
+    try {
+      const response = await fetch('/api/suspension');
+      sus = await response.json();
+  
+      localStorage.setItem('Suspension-JSON', JSON.stringify(sus));
+
+      const susText = localStorage.getItem('Suspension-JSON');
+      if (susText) {
+        accountStatus = JSON.parse(susText);
+      }
+    } catch {
+      const susText = localStorage.getItem('Suspension-JSON');
+      if (susText) {
+        accountStatus = JSON.parse(susText);
+      }else{
+        accountStatus = 0;
+      }
+    }
+}
+loadSus();
+
+//const accountStatus = localStorage.getItem('Suspention') ?? 0;
 
 if(accountStatus == 1){
     cheating();
