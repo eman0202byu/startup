@@ -10,12 +10,12 @@ let accountStatus = 0;
 async function loadSus() {
     let sus = 0;
     try {
-      const response = await fetch('/api/suspension');
+      const response = await fetch('/api/suspensions');
       sus = await response.json();
   
       localStorage.setItem('Suspension-JSON', JSON.stringify(sus));
 
-      const susText = localStorage.getItem('Suspension-JSON');
+      const susText = JSON.stringify(sus);
       if (susText) {
         accountStatus = JSON.parse(susText).val;
       }
@@ -44,53 +44,82 @@ function cheating(){
 if(accountStatus != 1){
 
 let SB = null;
+let SBFUBAR = false;
+let SBFinished = false;
 
-const fetchSB = new Promise((resolve,reject) => {
+async function loadSB() {
+    finished = false;
+    let SBJSON = [];
+    try {
+      const response = await fetch('/api/scoreboards');
+      SBJSON = await response.json();
+  
+      localStorage.setItem('SB-JSON', JSON.stringify(SBJSON));
 
-    let outsideSB = localStorage.getItem('ScoreBoard') ?? 'NONE'; //Update with database fetch
-    fetchSuccess = true;
-    ////IMPORTANT:: THIS WILL BE UPDATED WHEN DATABASE IS IMPLEMENTED
-
-    if(fetchSuccess === true){
-        if(outsideSB == 'NONE'){
-        SB = {
-           user1: [99999, "Alpha"],
-           user2: [99998, "Beta"],
-           user3: [99997, "Gamma"],
-           user4: [99996, "Delta"],
-           user5: [99995, "Epsilon"],
-           user6: [99994, "Zeta"],
-           user7: [99993, "Eta"],
-           user8: [99992, "Theta"],
-           user9: [99991, "Iota"],
-           user0: [99990, "Kappa"],
-        }
-        // This will be packaged in to a .json. user0 == 10th place
-        localStorage.setItem('ScoreBoard', JSON.stringify(SB)); //Update with database push
-        } else {
-            SB = JSON.parse(outsideSB);
-        }
-        resolve('SBINFORMATION');
-    } else {
-        reject('SBERRORCODEHERE');
+      const SBText = JSON.stringify(SBJSON);
+      if (SBText) {
+        SB = JSON.parse(SBText);
+      }
+    } catch {
+      const SBText = localStorage.getItem('SB-JSON');
+      if (SBText) {
+        SB = JSON.parse(SBText);
+      }else{
+        console.log('ERROR: Failed to fetch ScoreBoard, and no fall back ScoreBoard in Local Storage');
+        SBFUBAR = true;
+      }
     }
-});
+    SBFinished = true;
+}
+loadSB();
 
-fetchSB
-    .then((RESULT) => console.log(`Success: ${RESULT}`))
-    .catch((ERRORCODE) => console.error(`Error: ${ERRORCODE}`))
-    .finally(() => console.log('Log: fetchSB finished'));
+// const fetchSB = new Promise((resolve,reject) => {
+
+//     let outsideSB = localStorage.getItem('ScoreBoard') ?? 'NONE'; //Update with database fetch
+//     fetchSuccess = true;
+//     ////IMPORTANT:: THIS WILL BE UPDATED WHEN DATABASE IS IMPLEMENTED
+
+//     if(fetchSuccess === true){
+//         if(outsideSB == 'NONE'){
+//         SB = {
+//            user1: [99999, "Alpha"],
+//            user2: [99998, "Beta"],
+//            user3: [99997, "Gamma"],
+//            user4: [99996, "Delta"],
+//            user5: [99995, "Epsilon"],
+//            user6: [99994, "Zeta"],
+//            user7: [99993, "Eta"],
+//            user8: [99992, "Theta"],
+//            user9: [99991, "Iota"],
+//            user0: [99990, "Kappa"],
+//         }
+//         // This will be packaged in to a .json. user0 == 10th place
+//         localStorage.setItem('ScoreBoard', JSON.stringify(SB)); //Update with database push
+//         } else {
+//             SB = JSON.parse(outsideSB);
+//         }
+//         resolve('SBINFORMATION');
+//     } else {
+//         reject('SBERRORCODEHERE');
+//     }
+// });
+
+// fetchSB
+//     .then((RESULT) => console.log(`Success: ${RESULT}`))
+//     .catch((ERRORCODE) => console.error(`Error: ${ERRORCODE}`))
+//     .finally(() => console.log('Log: fetchSB finished'));
 
 
 function pullImage(){
     const imgDOM = document.querySelector("#picture");
     imgDOM.innerHTML =
     '<div id="picture" class="picture-box"><img width="150px" src="SpaceCoreOfDay.png" alt="random" /></div>';
-}
+} // Will update when DB exists
 pullImage();
 
 
 function updateSB(playerNum){
+    if(SBFUBAR == false){
     const playerID = '#user' + playerNum;
     const userDOM = document.querySelector(playerID);
     const key = 'user' + playerNum;
@@ -105,6 +134,7 @@ function updateSB(playerNum){
         userDOM.innerHTML = `<td id="user${playerNum}"><div>1${playerNum}.</div><div>§${formattedNumber}</div><div>${userName}</div></td>`
     }
 }
+}
 
 function runUpdateSB(){
 for (let i = 1; i < 10; i++) {
@@ -112,14 +142,33 @@ for (let i = 1; i < 10; i++) {
 }
 updateSB(0);
 }
+
+
+function primarySBUpdate(){
+if(SBFinished){
+    runUpdateSB();
+}else{
+    if(SBFinished == false){
+        setTimeout(() => {primarySBUpdate();}, 500);
+    }else{
+        primarySBUpdate();
+    }
 }
-runUpdateSB();
+}
+primarySBUpdate();
 
 function reUpSB(){
-    runUpdateSB();
-    console.log('Log: ScoreBoard Updated');
+    loadSB();
+    setTimeout(function(){
+        runUpdateSB();
+        console.log('Log: ScoreBoard Updated');
+    }, 15000);
 }
 
 let reUp = reUpSB;
 
 let intervalID = setInterval(reUp, 120000);
+
+
+
+}
