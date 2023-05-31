@@ -17,12 +17,12 @@ async function loadSus() {
 
       const susText = localStorage.getItem('Suspension-JSON');
       if (susText) {
-        accountStatus = JSON.parse(susText);
+        accountStatus = JSON.parse(susText).val;
       }
     } catch {
       const susText = localStorage.getItem('Suspension-JSON');
       if (susText) {
-        accountStatus = JSON.parse(susText);
+        accountStatus = JSON.parse(susText).val;
       }else{
         accountStatus = 0;
       }

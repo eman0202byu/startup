@@ -102,6 +102,7 @@ function cheatCheck(){
         currencychk = currency;
     }
 }
+cheatCheck();
 
 let cheatChecker = cheatCheck;
 

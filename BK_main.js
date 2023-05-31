@@ -48,12 +48,12 @@ app.listen(port, () => {
 
 // Logic
 
-let suspension = 0;
+let suspension = [];
 function updateSuspension(newSus){
     suspension = newSus;
     return suspension;
 }
-let bucks = 0;
+let bucks = [];
 function updateBucks(newBucks) {
   bucks = newBucks;
   return bucks;
