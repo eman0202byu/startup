@@ -44,9 +44,24 @@ function Bpress(){
         bucks.innerHTML =
         `<div id="bucks">§${formattedNumber}</div>`;
     }
+    saveCurrency(currency);
     localStorage.setItem("§", currency); //Update with Database push
     }
 }
+async function saveCurrency(currency) {
+    const userName = user;
+    const newCurrency = {name: userName, val: currency};
+    try {
+      const response = await fetch('/api/buck', {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify(newCurrency),
+      });
+      const currencyJSON = await response.json();
+      localStorage.setItem('§-JSON', JSON.stringify(currencyJSON));
+    } catch {
+    }
+  }
 Bpress();
 
 function pullImage(){
@@ -61,12 +76,29 @@ function cheating(){
     `<body id="caught"><header><h1>You Clicked too fast</h1><li><span class="text-reset">Your account has been suspended by the spacecops contact the admin to review your case.</span><br /><a href="https://github.com/eman0202byu/startup">GitHub</a></li></header></body>`;
 }
 
+async function saveSus(sus) {
+    const userName = user;
+    const newSus = {name: userName, val: sus};
+    try {
+      const response = await fetch('/api/suspended', {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify(newSus),
+      });
+      const susJSON = await response.json();
+      localStorage.setItem('Suspention-JSON', JSON.stringify(susJSON));
+    } catch {
+    }
+  }
+
 function cheatCheck(){
     if(currency > (currencychk + 100)){
         document.body.innerHTML =
         `<body id="caught"><header><h1>You Clicked too fast</h1><li><span class="text-reset">Your account has been suspended by the spacecops contact the admin to review your case.</span><br /><a href="https://github.com/eman0202byu/startup">GitHub</a></li></header></body>`;
-        localStorage.setItem("Suspention", 1); //Update with Database push
-    }else{
+        saveSus(1);
+        localStorage.setItem("Suspention", 1);
+    }else if(accountStatus != 1){
+        saveSus(0);
         currencychk = currency;
     }
 }

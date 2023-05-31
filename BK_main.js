@@ -10,16 +10,32 @@ app.use(express.json());
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
+
+//Getters
+
 apiRouter.get('/bucks', (_req, res) => {
     res.send(bucks);
   });
 
+  apiRouter.get('/sus', (_req, res) => {
+    res.send(suspention);
+  });
+
+
+// Setters
 
 apiRouter.post('/buck', (req, res) => {
-  scores = updateBucks(req.body, scores);
+  scores = updateBucks(req.body);
   res.send(bucks);
 });
 
+apiRouter.post('/suspended', (req, res) => {
+    scores = updateSuspension(req.body);
+    res.send(suspension);
+  });
+
+
+// Edge
 
 app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
@@ -30,7 +46,15 @@ app.listen(port, () => {
 });
 
 
+// Logic
+
+let suspension = 0;
+function updateSuspension(newSus){
+    suspension = newSus;
+    return suspension;
+}
 let bucks = 0;
 function updateBucks(newBucks) {
   bucks = newBucks;
+  return bucks;
 }
