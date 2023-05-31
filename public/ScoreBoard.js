@@ -145,10 +145,13 @@ updateSB(0);
 
 
 function primarySBUpdate(){
-if(SBFinished){
+if(SBFinished && SB !== [] && SB !== null){
     runUpdateSB();
 }else{
     if(SBFinished == false){
+        setTimeout(() => {primarySBUpdate();}, 500);
+    }else if(SB === [] || SB === null){
+        loadSB();
         setTimeout(() => {primarySBUpdate();}, 500);
     }else{
         primarySBUpdate();
