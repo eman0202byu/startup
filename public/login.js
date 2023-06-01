@@ -6,6 +6,15 @@ function login() {
 //    addUser(nameEl, passEl);
 }
 
+function ThisIsRequieredForAGrade(){
+    const url = "https://api.chucknorris.io/jokes/random?category=dev";
+    fetch(url)
+      .then((x) => x.json())
+      .then((response) => {
+        document.getElementById("ThisIsRequieredForAGrade").textContent = 'Obligatory "Frontend call to third party service endpoints": ' + JSON.stringify(response.value);
+      });
+}
+ThisIsRequieredForAGrade();
 
 // TODO: Implement when DB exists
 // async function addUser(user, pass) {
