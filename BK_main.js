@@ -44,6 +44,11 @@ apiRouter.post('/scoreboard', (req, res) => {
   res.send(SB);
 });
 
+apiRouter.post('/register', (req, res) => {
+  users = addUser(req.body);
+  res.send(req.body);
+});
+
 // Edge
 
 app.use((_req, res) => {
@@ -85,4 +90,10 @@ function updateSB_BK(SBobj){
     user0: [99990, "Kappa"],
  }
  return JSON.stringify(SB);
+}
+
+let users = [];
+function addUser(userObj){
+  users.push(userObj);
+  return users;
 }
