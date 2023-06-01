@@ -1,3 +1,5 @@
+//// NOTE STORE IS NO LONGER BEING IMPLEMENTED
+
 const user = localStorage.getItem('userName') ?? 404;
 const pass = localStorage.getItem('userPass') ?? 404;
 
