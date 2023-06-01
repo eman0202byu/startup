@@ -105,14 +105,3 @@ function addUser(userObj){
   users.push(userObj);
   return users;
 }
-
-let spaceCore = JSON.stringify({
-  hat: 0,
-  necklace: 0,
-  lHand: 0,
-  rHand: 0,
-});
-function updateSpaceCore(spaceCoreObj){
-  spaceCore = spaceCoreObj;
-  return spaceCore;
-}
