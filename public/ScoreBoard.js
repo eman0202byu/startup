@@ -48,7 +48,7 @@ let SBFUBAR = false;
 let SBFinished = false;
 
 async function loadSB() {
-    finished = false;
+    SBFinished = false;
     let SBJSON = [];
     try {
       const response = await fetch('/api/scoreboards');

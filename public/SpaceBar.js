@@ -11,7 +11,58 @@ if(accountStatus == 1){
     cheating();
 }
 
-let currency = localStorage.getItem('§') ?? 0; //Update with database fetch
+
+let currency = localStorage.getItem('§') ?? 0; //Update when DB exists
+
+// currency = null;
+// finished = false;
+// async function loadCurrency() {
+//     finished = false;
+//     let currencyJSON = [];
+//     try {
+//       const response = await fetch('/api/bucks');
+//       SBJSON = await response.json();
+  
+//       localStorage.setItem('§-JSON', JSON.stringify(currencyJSON));
+
+//       const currencyText = JSON.stringify(currencyJSON);
+//       if (currencyText) {
+//         currency = JSON.parse(currencyText).val;
+//       }
+//     } catch {
+//       const currencyText = localStorage.getItem('§-JSON');
+//       if (currencyText) {
+//         currency = JSON.parse(currencyText).val;
+//       }else{
+//         console.log('ERROR: Failed to fetch Space Bucks, and no fall back Space Bucks value in Local Storage');
+//       }
+//     }
+//     finished = true;
+// }
+// loadCurrency();
+
+
+
+// function actuallyDoSomthing(){
+// if(finished && currency !== [] && currency !== null){
+//     loadThePage();
+// }else{
+//     if(finished == false){
+//         setTimeout(() => {actuallyDoSomthing();}, 500);
+//     }else if(currency === [] || currency === null){
+//         loadCurrency();
+//         setTimeout(() => {actuallyDoSomthing();}, 500);
+//     }else{
+//         loadThePage();
+//     }
+// }
+// }
+// actuallyDoSomthing();
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////TODO: Implement when DB exists, tried to simulate interaction, but it will fail without DB to pull from.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 let currencychk = currency;
 currency--;
 function Bpress(){
