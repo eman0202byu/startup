@@ -21,7 +21,7 @@ let currency = localStorage.getItem('§') ?? 0; //Update when DB exists
 //     let currencyJSON = [];
 //     try {
 //       const response = await fetch('/api/bucks');
-//       SBJSON = await response.json();
+//       currencyJSON = await response.json();
   
 //       localStorage.setItem('§-JSON', JSON.stringify(currencyJSON));
 

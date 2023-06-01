@@ -5,7 +5,33 @@ if((user == 404) || (pass == 404)){
     window.location.href = "index.html";
 }
 
-const accountStatus = localStorage.getItem('Suspention') ?? 0; //Update with database fetch
+let accountStatus = 0;
+
+async function loadSus() {
+    let sus = 0;
+    try {
+      const response = await fetch('/api/suspensions');
+      sus = await response.json();
+  
+      localStorage.setItem('Suspension-JSON', JSON.stringify(sus));
+
+      const susText = JSON.stringify(sus);
+      if (susText) {
+        accountStatus = JSON.parse(susText).val;
+      }
+    } catch {
+      const susText = localStorage.getItem('Suspension-JSON');
+      if (susText) {
+        accountStatus = JSON.parse(susText).val;
+      }else{
+        accountStatus = 0;
+      }
+    }
+}
+loadSus();
+
+
+//const accountStatus = localStorage.getItem('Suspention') ?? 0; //Update with database fetch
 
 if(accountStatus == 1){
     cheating();
@@ -20,46 +46,92 @@ if(accountStatus != 1){
     
 let currency = localStorage.getItem('§') ?? 0; //Update with database fetch
 
+// currency = null;
+// finished = false;
+// async function loadCurrency() {
+//     finished = false;
+//     let currencyJSON = [];
+//     try {
+//       const response = await fetch('/api/bucks');
+//       currencyJSON = await response.json();
+  
+//       localStorage.setItem('§-JSON', JSON.stringify(currencyJSON));
 
+//       const currencyText = JSON.stringify(currencyJSON);
+//       if (currencyText) {
+//         currency = JSON.parse(currencyText).val;
+//       }
+//     } catch {
+//       const currencyText = localStorage.getItem('§-JSON');
+//       if (currencyText) {
+//         currency = JSON.parse(currencyText).val;
+//       }else{
+//         console.log('ERROR: Failed to fetch Space Bucks, and no fall back Space Bucks value in Local Storage');
+//       }
+//     }
+//     finished = true;
+// }
+// loadCurrency();
+
+
+
+// const fetchCore = new Promise((resolve,reject) => {
+
+//     let outsidespaceCore = localStorage.getItem('Core') ?? 'NONE'; //Update with database fetch
+//     fetchSuccess = true;
+//     ////IMPORTANT:: THIS WILL BE UPDATED WHEN DATABASE IS IMPLEMENTED
+
+//     if(fetchSuccess === true){
+//         if(outsidespaceCore == 'NONE'){
+//         spaceCore = {
+//            hat: 0,
+//            necklace: 0,
+//            lHand: 0,
+//            rHand: 0,
+//         }
+//         // Each image will be assigned a letter and number
+//         // h === hat; n === necklace; l === lHand; r === rHand;
+//         // The numbers will be in the order the image is added to the database
+//         // 0 === NONE;
+//         // EX: partyhat.jpg === h1;
+//         // This will be packaged in to a .json and send to the DB and then the DB will push back the corrosponding .png updating the user's SpaceCore.png reference.
+//         localStorage.setItem('Core', JSON.stringify(spaceCore)); //Update with database push
+//         } else {
+//             spaceCore = JSON.parse(outsidespaceCore);
+//         }
+//         resolve('COREINFORMATION');
+//     } else {
+//         reject('COREERRORCODEHERE');
+//     }
+// });
+
+// fetchCore
+//     .then((RESULT) => console.log(`Success: ${RESULT}`))
+//     .catch((ERRORCODE) => console.error(`Error: ${ERRORCODE}`))
+//     .finally(() => console.log('Log: fetchCore finished'));
 
 let spaceCore = null;
 
-const fetchCore = new Promise((resolve,reject) => {
+async function loadSpaceCore() {
+    core = null;
+    try {
+      const response = await fetch('/api/spaceCores');
+      core = await response.json();
+  
+      localStorage.setItem('Core', JSON.stringify(core));
 
-    let outsidespaceCore = localStorage.getItem('Core') ?? 'NONE'; //Update with database fetch
-    fetchSuccess = true;
-    ////IMPORTANT:: THIS WILL BE UPDATED WHEN DATABASE IS IMPLEMENTED
-
-    if(fetchSuccess === true){
-        if(outsidespaceCore == 'NONE'){
-        spaceCore = {
-           hat: 0,
-           necklace: 0,
-           lHand: 0,
-           rHand: 0,
-        }
-        // Each image will be assigned a letter and number
-        // h === hat; n === necklace; l === lHand; r === rHand;
-        // The numbers will be in the order the image is added to the database
-        // 0 === NONE;
-        // EX: partyhat.jpg === h1;
-        // This will be packaged in to a .json and send to the DB and then the DB will push back the corrosponding .png updating the user's SpaceCore.png reference.
-        localStorage.setItem('Core', JSON.stringify(spaceCore)); //Update with database push
-        } else {
-            spaceCore = JSON.parse(outsidespaceCore);
-        }
-        resolve('COREINFORMATION');
-    } else {
-        reject('COREERRORCODEHERE');
+      const coreText = JSON.stringify(core);
+      if (coreText) {
+        spaceCore = JSON.parse(coreText);
+      }
+    } catch {
+      const core = localStorage.getItem('Core');
+      if (core) {
+        spaceCore = JSON.parse(core);
+      }else{}
+      }
     }
-});
-
-fetchCore
-    .then((RESULT) => console.log(`Success: ${RESULT}`))
-    .catch((ERRORCODE) => console.error(`Error: ${ERRORCODE}`))
-    .finally(() => console.log('Log: fetchCore finished'));
-
-
+loadSpaceCore();
 
 
 
@@ -156,4 +228,6 @@ function inventoryUp(){
     alert('Inventory Saved');
 
 }
+}else{
+    cheating();
 }

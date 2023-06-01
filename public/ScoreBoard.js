@@ -174,4 +174,6 @@ let intervalID = setInterval(reUp, 120000);
 
 
 
+}else{
+    cheating();
 }

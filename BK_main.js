@@ -25,6 +25,9 @@ apiRouter.get('/bucks', (_req, res) => {
     updateSB_BK(null); //To be replaced when DB exists
     res.send(SB);
   });
+  apiRouter.get('/spaceCores', (_req, res) => {
+    res.send(spaceCore);
+  });
 
 
 // Setters
@@ -42,6 +45,11 @@ apiRouter.post('/suspended', (req, res) => {
 apiRouter.post('/scoreboard', (req, res) => {
   scores = updateSB(req.body);
   res.send(SB);
+});
+
+apiRouter.post('/spacecore', (req, res) => {
+  spaceCore = updateSpaceCore(req.body);
+  res.send(spaceCore);
 });
 
 apiRouter.post('/register', (req, res) => {
@@ -96,4 +104,15 @@ let users = [];
 function addUser(userObj){
   users.push(userObj);
   return users;
+}
+
+let spaceCore = JSON.stringify({
+  hat: 0,
+  necklace: 0,
+  lHand: 0,
+  rHand: 0,
+});
+function updateSpaceCore(spaceCoreObj){
+  spaceCore = spaceCoreObj;
+  return spaceCore;
 }
