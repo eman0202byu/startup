@@ -9,13 +9,13 @@ Have you ever felt cramped? Ever felt like you needed more space? Well now you c
 ### Design
 
 #### Space Bar
-![SpaceBar](https://github.com/eman0202byu/startup/blob/main/SpaceBarConcept.PNG)
+![SpaceBar](https://github.com/eman0202byu/startup/blob/main/public/SpaceBarConcept.PNG)
 
 #### Store
-![Store](https://github.com/eman0202byu/startup/blob/main/StoreConcept.PNG)
+![Store](https://github.com/eman0202byu/startup/blob/main/public/StoreConcept.PNG)
 
 #### Space Scanner
-![Score_Board](https://github.com/eman0202byu/startup/blob/main/ScoreBoardConcept.PNG)
+![Score_Board](https://github.com/eman0202byu/startup/blob/main/public/ScoreBoardConcept.PNG)
 
 ### Key features
 
@@ -76,6 +76,16 @@ For this deliverable I made my application functional to track and display a use
 - **Database** - Displayed the Images, Scoreboard leaders and values, Store prices and button dynamically so there are no issues when implementing this. Currently all values are stored in local storage, if no value is present dummy data is loaded in (this is done with a Promise to ensure effective padge evaluation).
 - **WebSocket** - I used the setInterval function to periodically check if a user is cheating, if they are it is reported to the Admin and their account is blocked. The scoreboard will be updated when the user presses the button, as the data is sent to the server to ensure that it is up to date. I used the setInterval function to periodically update said board after first initialization. The store will push to the Database via websockets what the user has purchaced, see items in local storage, and what their new SpaceCore is. All of these will be replaced with WebSockets later. (Unless there is a better way to implement them, which is why I have multiple things that have the potential of using WebSockets.)
 - **Application Logic** - The Space in the SpaceBar actually works!! The user's currency is tracked in local storage, and on a different page, the store, the user can spend their currency on items for their SpaceCore it checks if they have enough currency and refuses to sell if they do not. (These values are subtracted from their currency and this is reflected back in the space bar.) There is also an implementation of a cheat checker, if the user clicks more than 100 times in 5 seconds (Something that is not humanly possible) they will get banned and a flag will keep them from accessing any of the websight. There is also a conversion of all numbers so that commas exist for them in the correct locations, making it easier to read. In the SpaceBar it slowly removes the bars as the number gets larger. The .js files force players back to the login padge if they do not have a userName and userPass. There are also other things I have done on the side that may not count as logic, so I will not be listing them.
+
+## Service deliverable
+
+For this deliverable I created an HTTP service to host my frontend and provide backend endpoints. I also have axed the store functionality after talking to the professor, there is not enough time in this term for me to implement it.
+
+- **Node.js/Express HTTP service** - Node.js is on the AWS server, and Express was added for this project.
+- **Static middleware for frontend** - Express now statically serves up index.html.
+- **Calls to third party endpoints** - In accordance with the requierments for a grade I have created a function called: ThisIsRequieredForAGrade(). This function uses the fetch command to display a development related Chuck Norise joke from a third party endpoint.
+- **Backend service endpoints** - Utelizing Express' router I have added the following endpoints: /api (acts as the api root) (all other domains will use this as their root, and be a branch off of it), /bucks (gets current bucks), /suspensions (gets current suspension status), /scoreboards (gets current scoreboard), /buck (posts current bucks value), /suspend (posts current suspension status), /scoreboard (posts current scoreboard), /register (acts a place holder for registration).
+- **Frontend calls service endpoints** - sbar calls /api/suspended and /api/buck, will call api/bucks when DB is added. ScoreBoard calls api/suspensions and api/scoreboards.
 
 # Important Links
 

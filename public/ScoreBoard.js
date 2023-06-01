@@ -114,7 +114,7 @@ function pullImage(){
     const imgDOM = document.querySelector("#picture");
     imgDOM.innerHTML =
     '<div id="picture" class="picture-box"><img width="150px" src="SpaceCoreOfDay.png" alt="random" /></div>';
-} // Will update when DB exists
+}
 pullImage();
 
 
