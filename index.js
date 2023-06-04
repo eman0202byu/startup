@@ -1,7 +1,12 @@
 const express = require('express');
 const app = express();
-
+const { MongoClient } = require('mongodb');
+const cfg = require('./dbConfig.json');
+const dbURL = `mongodb+srv://${cfg.userName}:${cfg.password}@${cfg.hostname}`;
+const client = new MongoClient(dbURL);
+const db = client.db('startup');
 const port = 4000;
+//////////////////////////////////////////////////////////////////////////////////
 
 app.use(express.static('public'));
 
