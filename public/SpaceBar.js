@@ -1,67 +1,30 @@
-const user = localStorage.getItem('userName') ?? 404; //Update with database fetch
-const pass = localStorage.getItem('userPass') ?? 404; //Update with database fetch
-
+const user = localStorage.getItem('userName') ?? 404;
+const pass = localStorage.getItem('userPass') ?? 404;
 if((user == 404) || (pass == 404)){
     window.location.href = "index.html";
 }
 
-const accountStatus = localStorage.getItem('Suspention') ?? 0; //Update with database fetch
 
-if(accountStatus == 1){
-    cheating();
+let userObj = null; 
+const dbResponse = await fetch('/api/dbs');
+userObj = await dbResponse.json();
+///////////////////////////////////////////////////////
+
+async function susChk(){
+    if(userObj == null){
+        const dbResponse = await fetch('/api/dbs');
+        userObj = await dbResponse.json();
+    }
+    let accountStatus = userObj.status;
+    if(accountStatus == 1){
+        cheating();
+    }
 }
+susChk();
 
+////////////////////////////////////////////////////////////////////
 
-let currency = localStorage.getItem('§') ?? 0; //Update when DB exists
-
-// currency = null;
-// finished = false;
-// async function loadCurrency() {
-//     finished = false;
-//     let currencyJSON = [];
-//     try {
-//       const response = await fetch('/api/bucks');
-//       currencyJSON = await response.json();
-  
-//       localStorage.setItem('§-JSON', JSON.stringify(currencyJSON));
-
-//       const currencyText = JSON.stringify(currencyJSON);
-//       if (currencyText) {
-//         currency = JSON.parse(currencyText).val;
-//       }
-//     } catch {
-//       const currencyText = localStorage.getItem('§-JSON');
-//       if (currencyText) {
-//         currency = JSON.parse(currencyText).val;
-//       }else{
-//         console.log('ERROR: Failed to fetch Space Bucks, and no fall back Space Bucks value in Local Storage');
-//       }
-//     }
-//     finished = true;
-// }
-// loadCurrency();
-
-
-
-// function actuallyDoSomthing(){
-// if(finished && currency !== [] && currency !== null){
-//     loadThePage();
-// }else{
-//     if(finished == false){
-//         setTimeout(() => {actuallyDoSomthing();}, 500);
-//     }else if(currency === [] || currency === null){
-//         loadCurrency();
-//         setTimeout(() => {actuallyDoSomthing();}, 500);
-//     }else{
-//         loadThePage();
-//     }
-// }
-// }
-// actuallyDoSomthing();
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////TODO: Implement when DB exists, tried to simulate interaction, but it will fail without DB to pull from.
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
+let currency = localStorage.getItem('§') ?? 0;
 
 let currencychk = currency;
 currency--;
@@ -95,11 +58,11 @@ function Bpress(){
         bucks.innerHTML =
         `<div id="bucks">§${formattedNumber}</div>`;
     }
-    saveCurrency(currency);
-    localStorage.setItem("§", currency); //Update with Database push
+    saveCurrency(currency, userJSON);
+    localStorage.setItem("§", currency);
     }
 }
-async function saveCurrency(currency) {
+async function saveCurrency(currency, userJSON) {
     const userName = user;
     const newCurrency = {name: userName, val: currency};
     try {
@@ -129,7 +92,7 @@ function cheating(){
 
 async function saveSus(sus) {
     const userName = user;
-    const newSus = {name: userName, val: sus};
+    const newSus = {name: userName, status: sus};
     try {
       const response = await fetch('/api/suspended', {
         method: 'POST',
