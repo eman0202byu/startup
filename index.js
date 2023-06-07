@@ -46,7 +46,8 @@ async function checkEverything(curJSON){
     return 'USER_EXIST';
   }
   else{
-    return addEverything(curJSON);
+    addEverything(curJSON)
+    return curJSON;
   }
 }
 
@@ -64,26 +65,32 @@ async function findEverything(curObj){
 }
 
 async function updateEverything(curObj){
-  let check = curObj.name;
-  let query = {name: `${check}`};
+  let check = curObj.token;
+  let query = {token: `${check}`};
   let options = {};
   const result = await totalCollection.findOne(query, options);
   if(result !== null){
-    const result2 = await totalCollection.replaceOne(query, curJSON)
-    return result2;
+    const updateDoc = {
+      $set: {
+        status: curObj.status,
+        val: curObj.val,
+      },
+    };
+    const result2 = await totalCollection.updateOne(query, updateDoc)
+    return curObj;
   }
   else{
-    return addEverything(curJSON);
+    console.log("ERROR HAS OCCOURED WITH updateEverything");
+    //return addEverything(curJSON);
   }
 }
 
-async function getEverything(curJSON){
-  let curObj = JSON.parse(curJSON);
-  let check = curObj.name;
-  let query = {name: `${check}`};
+async function getEverything(curObj){
+  let check = curObj.token;
+  let query = {token: `${check}`};
   let options = {};
   const result = await totalCollection.findOne(query, options);
-  result = JSON.stringify(result);
+  //result = JSON.stringify(result);
   return result;
 }
 
@@ -103,6 +110,8 @@ app.use(express.static('public'));
 
 app.use(express.json());
 
+app.use(cookieParser());
+
 const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
@@ -114,8 +123,7 @@ apiRouter.get('/scoreboards', async (_req, res) => {
 });
 
 apiRouter.get('/dbs', async (_req, res) => {
-  ////Somehow magically know what user exists and then put their JSON into getEverything() /// Use cookies to create user login.
-  const userJSON = await getEverything();
+  const userJSON = await getEverything(_req.cookies.token);
   res.send(userJSON);
 });
 
@@ -123,7 +131,7 @@ apiRouter.post('/login', async (req, res) => {
   let result = await findEverything(req.body);
   if(result != null){
   if (await bcrypt.compare(req.body.pass, result.pass)) {
-    setAuthCookie(res, result.token);
+    setAuthCookie(res, result);
     res.send(result);
     return;
   }
@@ -151,7 +159,7 @@ apiRouter.post('/register', async (req, res) => {
   let userJSON = JSON.stringify(newUser);
   let result = await checkEverything(userJSON);
   if(result !== 'USER_EXIST'){
-    setAuthCookie(res, newUser.token);
+    setAuthCookie(res, newUser);
     res.send(userJSON);
   }else{
     res.send('USER_EXIST');

@@ -1,21 +1,18 @@
 const user = localStorage.getItem('userName') ?? 404;
-const pass = localStorage.getItem('userPass') ?? 404;
-if((user == 404) || (pass == 404)){
+if((user == 404)){
     window.location.href = "index.html";
 }
 
 
 let userObj = null; 
-const dbResponse = await fetch('/api/dbs');
-userObj = await dbResponse.json();
 ///////////////////////////////////////////////////////
-
+let accountStatus = 0;
 async function susChk(){
     if(userObj == null){
         const dbResponse = await fetch('/api/dbs');
         userObj = await dbResponse.json();
     }
-    let accountStatus = userObj.status;
+    accountStatus = userObj.status;
     if(accountStatus == 1){
         cheating();
     }
@@ -24,12 +21,19 @@ susChk();
 
 ////////////////////////////////////////////////////////////////////
 
-let currency = localStorage.getItem('§') ?? 0;
-
+let currency = 0;
 let currencychk = currency;
-currency--;
+async function getCurrency(){
+    if(userObj == null){
+        const dbResponse = await fetch('/api/dbs');
+        userObj = await dbResponse.json();
+    }
+    currency = userObj.val;
+    currencychk = currency;
+}
+getCurrency();
+
 function Bpress(){
-    if(accountStatus != 1){
     currency++;
     const formattedNumber = currency.toLocaleString("en-US");
     const bucks = document.querySelector('#bucks');
@@ -58,25 +62,29 @@ function Bpress(){
         bucks.innerHTML =
         `<div id="bucks">§${formattedNumber}</div>`;
     }
-    saveCurrency(currency, userJSON);
+    saveCurrency(currency);
     localStorage.setItem("§", currency);
-    }
 }
-async function saveCurrency(currency, userJSON) {
-    const userName = user;
-    const newCurrency = {name: userName, val: currency};
-    try {
-      const response = await fetch('/api/buck', {
-        method: 'POST',
-        headers: {'content-type': 'application/json'},
-        body: JSON.stringify(newCurrency),
-      });
-      const currencyJSON = await response.json();
-      localStorage.setItem('§-JSON', JSON.stringify(currencyJSON));
-    } catch {
-    }
+
+async function saveCurrency(currency) {
+        if(userObj == null){
+            const dbResponse = await fetch('/api/dbs');
+            userObj = await dbResponse.json();
+        }
+        userObj.val = currency;
+        try {
+          const response = await fetch('/api/db', {
+            method: 'POST',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify(userObj),
+          });
+          const thisJSON = await response.json();
+          localStorage.setItem('Everything-JSON', JSON.stringify(thisJSON));
+        } catch {
+        }
   }
 Bpress();
+currency--;
 
 function pullImage(){
     const imgDOM = document.querySelector("#picture");
@@ -91,16 +99,20 @@ function cheating(){
 }
 
 async function saveSus(sus) {
-    const userName = user;
-    const newSus = {name: userName, status: sus};
+    if(userObj == null){
+        const dbResponse = await fetch('/api/dbs');
+        userObj = await dbResponse.json();
+    }
+    userObj.status = sus;
+
     try {
-      const response = await fetch('/api/suspended', {
+      const response = await fetch('/api/db', {
         method: 'POST',
         headers: {'content-type': 'application/json'},
-        body: JSON.stringify(newSus),
+        body: JSON.stringify(userObj),
       });
-      const susJSON = await response.json();
-      localStorage.setItem('Suspention-JSON', JSON.stringify(susJSON));
+      const thisJSON = await response.json();
+      localStorage.setItem('Everything-JSON', JSON.stringify(thisJSON));
     } catch {
     }
   }
