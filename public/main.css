@@ -71,7 +71,7 @@ a {
     color: lightgrey;
 }
 
-form {
+main {
     flex-direction: row;
     background-color: rgb(51, 51, 51);
     padding: 1rem;

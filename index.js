@@ -9,7 +9,18 @@ const total = 'total';
 const totalCollection = db.collection(total);
 const port = 4000;
 const MAX_SAFE_INTEGER = 9007199254740991;
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
+const authCookieName = 'token';
+const uuid = require('uuid');
 ////////////////////////////////////////////////////////////////////////////////////////////////
+
+// async function test(){
+// thisisthingy = await bcrypt.hash("qwertyuioplkjhgfdsazxcvbnm!@#$%^&*(QWQ)", 10);
+// return thisisthingy;
+// }
+
+// thingy = test();
 
 (async function testConnection() {
   await client.connect();
@@ -20,7 +31,8 @@ const MAX_SAFE_INTEGER = 9007199254740991;
 });
 
 async function addEverything(curJSON) {
-  const result = await totalCollection.insertOne(curJSON);
+  curObj = JSON.parse(curJSON);
+  const result = await totalCollection.insertOne(curObj);
   return result;
 }
 
@@ -30,8 +42,7 @@ async function checkEverything(curJSON){
   let query = {name: `${check}`};
   let options = {};
   const result = await totalCollection.findOne(query, options);
-
-  if(result== EXIST){
+  if(result !== null){
     return 'USER_EXIST';
   }
   else{
@@ -39,31 +50,27 @@ async function checkEverything(curJSON){
   }
 }
 
-async function findEverything(curJSON){
-  let curObj = JSON.parse(curJSON);
+async function findEverything(curObj){
   let check = curObj.name;
   let query = {name: `${check}`};
   let options = {};
   const result = await totalCollection.findOne(query, options);
-
-  if(result== EXIST){
-    return true;
+  if(result !== null){
+    return result;
   }
   else{
-    return false;
+    return null;
   }
 }
 
-async function updateEverything(curJSON){
-  let curObj = JSON.parse(curJSON);
+async function updateEverything(curObj){
   let check = curObj.name;
   let query = {name: `${check}`};
   let options = {};
   const result = await totalCollection.findOne(query, options);
-
   if(result !== null){
-    ////update result
-    return result;
+    const result2 = await totalCollection.replaceOne(query, curJSON)
+    return result2;
   }
   else{
     return addEverything(curJSON);
@@ -71,16 +78,6 @@ async function updateEverything(curJSON){
 }
 
 async function getEverything(curJSON){
-  let curObj = JSON.parse(curJSON);
-  let check = curObj.name;
-  let query = {name: `${check}`};
-  let options = {};
-  const result = await totalCollection.findOne(query, options);
-  result = JSON.stringify(result);
-  return result;
-}
-
-async function getBucks(curJSON){
   let curObj = JSON.parse(curJSON);
   let check = curObj.name;
   let query = {name: `${check}`};
@@ -123,8 +120,15 @@ apiRouter.get('/dbs', async (_req, res) => {
 });
 
 apiRouter.post('/login', async (req, res) => {
-  let result = await findEverything(req);
-  res.send(result);
+  let result = await findEverything(req.body);
+  if(result != null){
+  if (await bcrypt.compare(req.body.pass, result.pass)) {
+    setAuthCookie(res, result.token);
+    res.send(result);
+    return;
+  }
+}
+  res.status(401).send({ msg: 'Unauthorized' });
 });
 
 // Setters
@@ -134,18 +138,20 @@ apiRouter.post('/db', async (req, res) => {
 });
 
 apiRouter.post('/register', async (req, res) => {
-  let curObj = JSON.parse(req.body);
+  let curObj = req.body;
   let userName = curObj.name;
-  let userPass = curObj.password
+  const passwordHash = await bcrypt.hash(curObj.pass, 10);
   let newUser = {
     name: userName,
-    pass: userPass,
+    pass: passwordHash,
     status: 0,
     val: 0,
+    token: uuid.v4(),
   }
   let userJSON = JSON.stringify(newUser);
   let result = await checkEverything(userJSON);
   if(result !== 'USER_EXIST'){
+    setAuthCookie(res, newUser.token);
     res.send(userJSON);
   }else{
     res.send('USER_EXIST');
@@ -153,6 +159,14 @@ apiRouter.post('/register', async (req, res) => {
 });
 
 // Edge
+
+function setAuthCookie(res, authToken) {
+  res.cookie(authCookieName, authToken, {
+    secure: true,
+    httpOnly: true,
+    sameSite: 'strict',
+  });
+}
 
 app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
