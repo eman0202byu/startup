@@ -95,7 +95,7 @@ async function getEverything(curObj){
 }
 
 function getHighScores() {
-  const query = { val: { $gt: 0, $lt: MAX_SAFE_INTEGER} };
+  const query = { val: { $gt: 0, $lt: MAX_SAFE_INTEGER}, status: { $not: { $eq: 1 } } };
   const options = {
     sort: { val: -1 },
     limit: 10,
