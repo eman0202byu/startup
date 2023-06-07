@@ -87,6 +87,23 @@ For this deliverable I created an HTTP service to host my frontend and provide b
 - **Backend service endpoints** - Utelizing Express' router I have added the following endpoints: /api (acts as the api root) (all other domains will use this as their root, and be a branch off of it), /bucks (gets current bucks), /suspensions (gets current suspension status), /scoreboards (gets current scoreboard), /buck (posts current bucks value), /suspend (posts current suspension status), /scoreboard (posts current scoreboard), /register (acts a place holder for registration).
 - **Frontend calls service endpoints** - sbar calls /api/suspended and /api/buck, will call api/bucks when DB is added. ScoreBoard calls api/suspensions and api/scoreboards.
 
+## DB deliverable
+
+For this deliverable I stored and retrieved data from MongoDB with it being tied to a specific user.
+
+- **MongoDB Atlas database created** - startup.b62dkqo.mongodb.net
+- **Endpoints for data** - I removed all other endpoints, and added (still under /api): /db, /register, /login, /dbs, /scoreboards. scoreboards endpoint queried MongoDB for high scores, and the rest handel passing data.
+- **Stores data in MongoDB** - All data nessessary for the app to function (code aside) is now stored on MongoDB in a JSON.
+
+## Login deliverable
+
+For this deliverable I continued to add user functionality to registration and authentication.
+
+- **User registration** - New accounts are registered when the registration button is pressed, passwards are hashed, and cookies are strict (as well as a few other things).
+- **existing user** - Login: If user name exist, then password is rehashed and checked for credibility. Registration, if user already exists user is alert()ed that it is taken.
+- **Use MongoDB to store credentials** - All user credientials are stored in JSONs on MongoDB.
+- **Restricts functionality** - You cannot access the app unless you login. If account is flaged with suspension than the user's scores are removed from the scoreboard, and their account is locked.
+
 # Important Links
 
 ## [Notes](https://github.com/eman0202byu/startup/blob/main/notes.md)
