@@ -104,6 +104,17 @@ For this deliverable I continued to add user functionality to registration and a
 - **Use MongoDB to store credentials** - All user credientials are stored in JSONs on MongoDB.
 - **Restricts functionality** - You cannot access the app unless you login. If account is flaged with suspension than the user's scores are removed from the scoreboard, and their account is locked.
 
+## WebSocket deliverable
+
+For this deliverable I enabled realtime reporting of suspended users to all other users on the platform.
+
+- **Backend listens for WebSocket connection** - The backend listens for user suspensions.
+- **Frontend makes WebSocket connection** - The frontend sends a user's information when they are suspended. The front end also listens for suspensions of other users.
+- **Data sent over WebSocket connection** - A JSON is send over the websocket connection.
+- **WebSocket data displayed** - When a user is suspended all other users are alert()ed of the user's name and that their account has been suspended.
+NOTE: You may need to refresh the padge for the alert to be sent. (Either that or on chrome you need to have the padge in focus for it to recive and send ws interactions.)
+I used a suspended account (Username: SUSSY_BOI Password: qwertyuioplkjhgfdsazxcvbnm!@#$%^&*(QWQ)) and a normal user account to test this fetature, and a TA helped me to get it working.
+
 # Important Links
 
 ## [Notes](https://github.com/eman0202byu/startup/blob/main/notes.md)
