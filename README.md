@@ -115,6 +115,15 @@ For this deliverable I enabled realtime reporting of suspended users to all othe
 NOTE: You may need to refresh the padge for the alert to be sent. (Either that or on chrome you need to have the padge in focus for it to recive and send ws interactions.)
 I used a suspended account (Username: SUSSY_BOI Password: qwertyuioplkjhgfdsazxcvbnm!@#$%^&*(QWQ)) and a normal user account to test this fetature, and a TA helped me to get it working.
 
+## React deliverable
+
+For this deliverable I port the application over to React.
+
+- **Bundled and transpiled** - done!
+- **Components** - Login, Space Bar, are components.
+- **Router** - Routing between login and Space Bar components.
+- **Hooks** - UseState to track changes in putton presses, UseEffect to fetch user data on load.
+
 # Important Links
 
 ## [Notes](https://github.com/eman0202byu/startup/blob/main/notes.md)
