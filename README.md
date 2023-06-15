@@ -119,10 +119,10 @@ I used a suspended account (Username: SUSSY_BOI Password: qwertyuioplkjhgfdsazxc
 
 For this deliverable I port the application over to React.
 
-- **Bundled and transpiled** - done!
+- **Bundled and transpiled** - done.
 - **Components** - Login, Space Bar, are components.
 - **Router** - Routing between login and Space Bar components.
-- **Hooks** - UseState to track changes in putton presses, UseEffect to fetch user data on load.
+- **Hooks** - UseState to track changes in button presses, UseEffect to fetch user data on load.
 
 # Important Links
 
