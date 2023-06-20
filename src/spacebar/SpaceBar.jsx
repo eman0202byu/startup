@@ -6,6 +6,7 @@ export function SpaceBar() {
   async function getData() {
     const dbResponse = await fetch("/api/dbs");
     const j = await dbResponse.json();
+    updateData(j.val + 1);
     setDisplayText(j.val);
   }
 

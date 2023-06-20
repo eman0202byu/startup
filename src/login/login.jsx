@@ -43,6 +43,12 @@ const nameEl = document.querySelector("#username");
 const passEl = document.querySelector("#password");
 let result = await regPost(nameEl.value, passEl.value);
 if(result == true){
+  const response = await logPost(nameEl.value, passEl.value);
+  if(response){
+    window.location.href = "/spacebar";
+  }else{
+    window.location.href = "/";
+  }
   window.location.href = "/spacebar";
 }else{
   window.location.href = "/";
